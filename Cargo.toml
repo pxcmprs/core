@@ -1,6 +1,6 @@
 [package]
 name = "pxcmprs-core"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Åke Amcoff <ake.amcoff@gmail.com>"]
 edition = "2018"
 description = "Critical pxcmprs structs and functions."

@@ -2,7 +2,7 @@ use super::{Encoding, ResizeMode};
 use serde::{Deserialize, Serialize};
 
 /// The default struct for requests to pxcmprs.
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Query {
     /// URL of the source image. Input formats currently supported are the same as those of the [image] crate.
     pub source: String,
