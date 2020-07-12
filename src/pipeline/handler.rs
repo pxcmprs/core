@@ -22,8 +22,8 @@ pub fn handle_image(bytes: Vec<u8>, query: Query) -> HandleResult {
         query.width.unwrap_or_else(|| image.width()),
         query.height.unwrap_or_else(|| image.height()),
     );
-    image = transform::resize_dynimage(&image, &query.mode.unwrap_or_default(), nwidth, nheight);
-    let result = encoder::encode_image(&image, &query.encoding)?;
+    image = transform::resize_dynimage(&image, query.mode.unwrap_or_default(), nwidth, nheight);
+    let result = encoder::encode_image(&image, query.encoding)?;
 
     Ok(HandleResponse {
         bytes: result,
@@ -67,7 +67,7 @@ pub fn handle_gif(bytes: Vec<u8>, query: Query) -> HandleResult {
                 };
                 let resized = transform::resize_dynimage(
                     &DynamicImage::ImageRgba8(rgba),
-                    &resize_mode,
+                    resize_mode,
                     nwidth,
                     nheight,
                 );

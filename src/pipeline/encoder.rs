@@ -12,7 +12,7 @@ fn encode_default_image(image: &DynamicImage, format: ImageOutputFormat) -> Enco
 }
 
 /// Encode a `DynamicImage` in a specified `Encoding`.
-pub fn encode_image(image: &DynamicImage, encoding: &Encoding) -> EncodeResult {
+pub fn encode_image(image: &DynamicImage, encoding: Encoding) -> EncodeResult {
     use Encoding::*;
 
     match encoding {

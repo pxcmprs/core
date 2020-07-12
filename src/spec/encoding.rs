@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::str::FromStr;
 
 /// Output format of the processed image.
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub enum Encoding {
     /// Output the media as JPEG.
     #[serde(rename = "jpeg")]
@@ -31,7 +31,7 @@ impl Default for Encoding {
 
 impl Encoding {
     /// Get the `Mime` type.
-    pub fn mime_type(&self) -> Mime {
+    pub fn mime_type(self) -> Mime {
         match self {
             Encoding::Jpeg => IMAGE_JPEG,
             Encoding::Png => IMAGE_PNG,
@@ -41,7 +41,7 @@ impl Encoding {
     }
 
     /// Returns `true` if the encoding is considered a video, for example a MP4 or GIF (even though GIFs are not neccessarily animated).
-    pub fn is_video(&self) -> bool {
+    pub fn is_video(self) -> bool {
         match self {
             Encoding::Gif => true,
             _ => false,

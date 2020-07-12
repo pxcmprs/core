@@ -4,7 +4,7 @@ use image::DynamicImage;
 /// Resize a `DynamicImage`.
 pub fn resize_dynimage(
     image: &DynamicImage,
-    mode: &ResizeMode,
+    mode: ResizeMode,
     width: u32,
     height: u32,
 ) -> DynamicImage {

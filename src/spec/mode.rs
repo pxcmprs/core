@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Options for how to crop the media if the new resolution has a different aspect ratio.
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub enum ResizeMode {
     /// The image is scaled to the maximum possible size that fits within the new resolution.
     #[serde(rename = "contain")]
