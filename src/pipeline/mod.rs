@@ -10,6 +10,7 @@ use crate::spec::Query;
 use error::PipelineError;
 use image::ImageFormat;
 use mime::Mime;
+use std::time::Duration;
 
 type PipelineResult<T> = Result<T, PipelineError>;
 
@@ -20,6 +21,9 @@ pub struct PipelineResponse {
 
     /// The mime type of the encoded media.
     pub mime: Mime,
+
+    /// Execution time.
+    pub execution_time: Duration
 }
 
 /// Handle a `Query`.
@@ -32,13 +36,9 @@ pub fn handle_query(bytes: Vec<u8>, query: Query) -> PipelineResult<PipelineResp
         _ => handler::handle_image(bytes, query)?,
     };
 
-    println!(
-        "Processing time: {} milliseconds",
-        response.execution_time.as_millis()
-    );
-
     Ok(PipelineResponse {
         bytes: response.bytes,
         mime,
+        execution_time: response.execution_time
     })
 }
